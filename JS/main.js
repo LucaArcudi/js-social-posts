@@ -94,5 +94,28 @@ posts.forEach(post => {
              </div> 
          </div>            
     </div>
-    `
-})
+    `;
+});
+
+
+const likeButtons = document.querySelectorAll(`a.like-button`);
+const likesCounters = document.querySelectorAll(`b.js-likes-counter`);
+
+for(let i = 0; i < likeButtons.length; i++) {
+    const likeButton = likeButtons[i];
+    const likesCounter = likesCounters[i];
+
+    console.log(likesCounter);
+
+    likeButton.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        if (likeButton.classList.contains("like-button--liked")){
+            likeButton.classList.remove("like-button--liked");
+            likesCounter.innerHTML = parseInt(likesCounter.innerHTML, 10) - 1;
+        } else {
+            likeButton.classList.add("like-button--liked");
+            likesCounter.innerHTML = parseInt(likesCounter.innerHTML, 10) + 1;
+        }
+    });
+}
